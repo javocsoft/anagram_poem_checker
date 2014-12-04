@@ -1,4 +1,4 @@
-anagram_poem_checker
+Anagram Poem Checker
 ====================
 
-An Anagram Poem checker tool
+An Anagram Poem checker tool test :)
