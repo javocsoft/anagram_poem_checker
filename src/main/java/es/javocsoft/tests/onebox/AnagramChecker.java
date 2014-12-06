@@ -1,6 +1,5 @@
 package es.javocsoft.tests.onebox;
 
-import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +8,10 @@ import org.apache.log4j.Logger;
 import com.google.common.collect.HashMultiset;
 import com.google.common.collect.Multiset;
 import com.google.common.collect.Multiset.Entry;
+
+import es.javocsoft.tests.onebox.exception.AnagramException;
+import es.javocsoft.tests.onebox.utils.IOUtils;
+import es.javocsoft.tests.onebox.utils.StringUtilities;
 
 /**
  * Anagram checker.
@@ -40,11 +43,31 @@ public class AnagramChecker {
 	
 	
 	/**
-	 * Checks if a text is an anagram or not.
+	 * Checks if a text/file is an anagram or not.
 	 * 
 	 * @param text
 	 */
-	public static boolean isAnagram(String text) {
+	public static boolean isAnagram(String data, boolean isFile) throws AnagramException {
+		
+		String text = null;
+		if(!isFile) {
+			text = data;
+		}else{
+			text = IOUtils.readTextFile(data);
+		}	
+	
+		return isAnagram(text);
+	}
+	
+	
+	//AUXILIAR
+	
+	/**
+	 * Check the possible anagram text.
+	 * 
+	 * @param text
+	 */
+	private static boolean isAnagram(String text) {
 		boolean res = false;
 		
 		logger.info("\n"+text+"\n");
@@ -63,11 +86,7 @@ public class AnagramChecker {
 		
 		return res;
 	}
-	
-	
-	
-	//AUXILIAR
-	
+		
 	/**
 	 * First pass - Normalizes lines and checks line lengths
 	 * 
@@ -81,7 +100,7 @@ public class AnagramChecker {
 		int letterCounter = 0;
 		for(String l:lines){
 			//System.out.println(l);
-			l = normalize(l);
+			l = StringUtilities.normalize(l);
 			if(l!=null && l.length()>0){
 				normalizedLines.add(l);
 				if(letterCounter!=0){
@@ -174,35 +193,5 @@ public class AnagramChecker {
 		return res;
 	}
 	
-	/**
-	 * Normalizes a text:
-	 * 
-	 * 	- Removing all non character/numbers
-	 * 	- Getting the non accented versions of the letters.
-	 * 
-	 * @param text
-	 * @return	The normalized text.
-	 */
-	private static String normalize(String text) {
-		//This regular expression matches all (Unicode) characters 
-		//that are neither letters nor (decimal) digits
-		String result = text.replaceAll("[^\\p{L}\\p{Nd}]+", "");
-		
-		//Now we normalize the text according to NFD.
-		//This will do a "Canonical decomposition":
-		//	This will separate all of the accent marks from the characters. 
-		//	Then, you just need to compare each character against being a 
-		//	letter and throw out the ones that aren't :)
-		//See
-		//	https://docs.oracle.com/javase/tutorial/i18n/text/normalizerapi.html
-		result = Normalizer.normalize(result, Normalizer.Form.NFD);
-		//	For unicode, \\P{M} matches the base glyph and
-		//  \\p{M} (lowercase) matches each accent.
-		result = result.replaceAll("\\p{M}", "");
-		
-		//Now the line is totally clean :D
-		//System.out.println(result + "\n");
-		
-		return result;
-	}
+	
 }

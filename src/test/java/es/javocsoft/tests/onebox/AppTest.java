@@ -1,8 +1,12 @@
 package es.javocsoft.tests.onebox;
 
+import java.io.File;
+import java.io.InputStream;
+
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
+import es.javocsoft.tests.onebox.exception.AnagramException;
 
 /**
  * Unit test for simple Anagram Poem tool.
@@ -52,16 +56,50 @@ public class AppTest extends TestCase {
 	
 	/** Tests */
 	
-	public void testAnagram1_OK() {		
-		assertTrue(AnagramChecker.isAnagram(anagram_1_ok));
+	public void testAnagram1_OK() {	
+		try{
+			assertTrue(AnagramChecker.isAnagram(anagram_1_ok, false));
+		} catch (AnagramException e) {
+			System.out.println("Error checking anagram: " + e.getMessage());
+		}				
 	}
 	
 	public void testAnagram2_NOT_OK() {
-		assertFalse(AnagramChecker.isAnagram(anagram_2_fail));
+		try{
+			assertFalse(AnagramChecker.isAnagram(anagram_2_fail, false));
+		} catch (AnagramException e) {
+			System.out.println("Error checking anagram: " + e.getMessage());
+		}				
 	}
 	
 	public void testAnagram3_OK() {
-		assertTrue(AnagramChecker.isAnagram(anagram_3_ok));
+		try{
+			assertTrue(AnagramChecker.isAnagram(anagram_3_ok, false));
+		} catch (AnagramException e) {
+			System.out.println("Error checking anagram: " + e.getMessage());
+		}				
+	}
+	
+	public void testAnagram4_fromFile_NOT_OK() {
+		try{
+			ClassLoader classLoader = getClass().getClassLoader();
+		    File file = new File(classLoader.getResource("anagram_file_1.txt").getFile());
+		    
+			assertFalse(AnagramChecker.isAnagram(file.getAbsolutePath(), true));
+		} catch (AnagramException e) {
+			System.out.println("Error checking anagram: " + e.getMessage());
+		}				
+	}
+	
+	public void testAnagram4_fromFile_OK() {
+		try{
+			ClassLoader classLoader = getClass().getClassLoader();
+		    File file = new File(classLoader.getResource("anagram_file_2.txt").getFile());
+		    
+			assertTrue(AnagramChecker.isAnagram(file.getAbsolutePath(), true));
+		} catch (AnagramException e) {
+			System.out.println("Error checking anagram: " + e.getMessage());
+		}				
 	}
 	
 }
