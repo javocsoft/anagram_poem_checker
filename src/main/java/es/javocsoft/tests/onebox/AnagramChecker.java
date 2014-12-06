@@ -45,7 +45,8 @@ public class AnagramChecker {
 	/**
 	 * Checks if a text/file is an anagram or not.
 	 * 
-	 * @param text
+	 * @param data
+	 * @param isFile
 	 */
 	public static boolean isAnagram(String data, boolean isFile) throws AnagramException {
 		
