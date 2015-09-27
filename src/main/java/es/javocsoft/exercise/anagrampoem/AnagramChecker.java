@@ -1,4 +1,4 @@
-package es.javocsoft.tests.onebox;
+package es.javocsoft.exercise.anagrampoem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,9 +9,9 @@ import com.google.common.collect.HashMultiset;
 import com.google.common.collect.Multiset;
 import com.google.common.collect.Multiset.Entry;
 
-import es.javocsoft.tests.onebox.exception.AnagramException;
-import es.javocsoft.tests.onebox.utils.IOUtils;
-import es.javocsoft.tests.onebox.utils.StringUtilities;
+import es.javocsoft.exercise.anagrampoem.exception.AnagramException;
+import es.javocsoft.exercise.anagrampoem.utils.IOUtils;
+import es.javocsoft.exercise.anagrampoem.utils.StringUtilities;
 
 /**
  * Anagram checker.

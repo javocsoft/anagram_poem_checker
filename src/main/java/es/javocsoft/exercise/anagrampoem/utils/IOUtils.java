@@ -1,11 +1,11 @@
-package es.javocsoft.tests.onebox.utils;
+package es.javocsoft.exercise.anagrampoem.utils;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
-import es.javocsoft.tests.onebox.exception.AnagramException;
+import es.javocsoft.exercise.anagrampoem.exception.AnagramException;
 
 /**
  * Class for IO auxiliar functions.

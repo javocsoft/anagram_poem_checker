@@ -1,4 +1,4 @@
-package es.javocsoft.tests.onebox.utils;
+package es.javocsoft.exercise.anagrampoem.utils;
 
 import java.text.Normalizer;
 

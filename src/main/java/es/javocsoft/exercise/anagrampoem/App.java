@@ -1,6 +1,6 @@
-package es.javocsoft.tests.onebox;
+package es.javocsoft.exercise.anagrampoem;
 
-import es.javocsoft.tests.onebox.exception.AnagramException;
+import es.javocsoft.exercise.anagrampoem.exception.AnagramException;
 
 /**
  * Anagram checker.

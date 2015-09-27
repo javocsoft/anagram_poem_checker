@@ -1,12 +1,13 @@
-package es.javocsoft.tests.onebox;
+package es.javocsoft.tests.exercise.anagrampoem;
 
 import java.io.File;
 import java.io.InputStream;
 
+import es.javocsoft.exercise.anagrampoem.AnagramChecker;
+import es.javocsoft.exercise.anagrampoem.exception.AnagramException;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
-import es.javocsoft.tests.onebox.exception.AnagramException;
 
 /**
  * Unit test for simple Anagram Poem tool.

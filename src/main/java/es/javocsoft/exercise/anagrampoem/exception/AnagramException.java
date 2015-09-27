@@ -1,4 +1,4 @@
-package es.javocsoft.tests.onebox.exception;
+package es.javocsoft.exercise.anagrampoem.exception;
 
 /**
  * Anagram Checker exception.
